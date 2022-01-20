@@ -6,10 +6,18 @@ int main(void)
 
     /* Initialize the library */
     if (!glfwInit())
+    {
         return -1;
+    }
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(100, 100, "Eye Care Rem", NULL, NULL);
+
+    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+
+    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+
+    glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
 
     if (!window)
     {
